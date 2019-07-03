@@ -1,8 +1,17 @@
 import Vue from 'vue'
-import App from './App.vue'
+import App from './App'
+import AnimateWhenVisible from './components/AnimateWhenVisible'
 
-Vue.config.productionTip = false
+import addPolyfills from './polyfills'
+import './directives/validity'
+import './styles/app.scss'
 
-new Vue({
-  render: h => h(App),
-}).$mount('#app')
+Vue.component('AnimateWhenVisible', AnimateWhenVisible)
+Vue.config.productionTip = false;
+
+addPolyfills().then(() => {
+  new Vue({
+    el: '#app',
+    render: h => h(App),
+  });
+})
